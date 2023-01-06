@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=indiecomp
+POSTGRES_USER=HRCcTaKSPSBCMkTYYQZAPJcNIYEdDpuz
+POSTGRES_PASSWORD=CwB19Bf7VPZLACezo5244iUASAc7uZyN1UQul78vA0vzonKtgFhdK3edED8NYrYF
