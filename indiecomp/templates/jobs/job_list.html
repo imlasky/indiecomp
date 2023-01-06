@@ -1,11 +1,12 @@
-
+{% load humanize %}
 {% for job in job_list %}
 <p>
     <details>
     <summary>
         {{job.title}} |  
-        {% for loc in job.location.all %}{{loc.city}} {% endfor %} | 
-        {{job.salaryMin}} - {{job.salaryMax}} |
+        {{job.company.name}} | 
+        {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} | 
+        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
         <a href={{job.application_url}}>Apply</a>
     </summary>
     <p>{{job.description}}</p>
