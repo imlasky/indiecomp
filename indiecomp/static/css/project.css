@@ -1,13 +1,210 @@
-/* These styles are generated from project.scss. */
 
-.alert-debug {
-  color: black;
-  background-color: white;
-  border-color: #d6e9c6;
+      
+      
+:root {
+  --width: 720px;
+  --font-main: Tahoma, sans-serif;
+  --font-secondary: Tahoma, sans-serif;
+  --font-scale: 1.1em;
+  --background-color: #fff;
+  --heading-color: #333;
+  --text-color: #444;
+  --link-color: #3273dc;
+  --visited-color:  #8b6fcb;
+  --code-background-color: #f2f2f2;
+  --code-color: #222;
+  --blockquote-color: #222;
+  --letter-spacing: 1px;
 }
 
-.alert-error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #3c3c50;
+        --heading-color: #fafafa;
+        --text-color: #ddd;
+        --link-color: #8cc2dd;
+        --visited-color:  #8b6fcb;
+        --code-background-color: #000;
+        --code-color: #ddd;
+        --blockquote-color: #ccc;
+    }
 }
+
+body {
+    font-family: var(--font-secondary);
+    font-size: var(--font-scale);
+    margin: auto;
+    padding: 20px;
+    max-width: var(--width);
+    text-align: left;
+    background-color: var(--background-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.45;
+    color: var(--text-color);
+    letter-spacing: var(--letter-spacing);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+    color: var(--heading-color);
+}
+
+a {
+    color: var(--link-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; 
+}
+
+nav a {
+    margin-right: 12px;
+}
+
+strong, b {
+    color: var(--heading-color);
+}
+
+button {
+    margin: 0;
+    cursor: pointer;
+}
+
+content {
+    line-height: 1.6;
+}
+
+table {
+    width: 100%;
+}
+
+hr {
+    border: 0;
+    border-top: 1px dashed;
+}
+
+img {
+    max-width: 100%;
+}
+
+code {
+    font-family: monospace;
+    padding: 2px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+}
+
+blockquote {
+    border-left: 1px solid #999;
+    color: var(--code-color);
+    padding-left: 20px;
+    font-style: italic;
+}
+
+footer {
+    padding: 25px 0;
+    text-align: center;
+}
+
+.title:hover {
+    text-decoration: none;
+}
+
+.title h1 {
+    font-size: 1.5em;
+}
+
+.inline {
+    width: auto !important;
+}
+
+.highlight, .code {
+    padding: 1px 15px;
+    background-color: var(--code-background-color);
+    color: var(--code-color);
+    border-radius: 3px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    overflow-x: auto;
+}
+
+/* blog post list */
+ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+}
+
+ul.blog-posts li {
+    display: flex;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 130px;
+}
+
+ul.blog-posts li a:visited {
+    color: var(--visited-color);
+}
+        .title-bear {
+    font-weight: 400;
+}
+
+.bear::before {
+    content: "ᕦʕ •ᴥ•ʔᕤ";
+    font-weight: 400;
+}
+.bear:hover::before {
+    content: "ᕙʕ ಠᴥಠʔᕗ";
+    font-weight: 400;
+}
+
+textarea,
+input:not([type="submit"]) {
+    background-color: inherit;
+    color: inherit;
+    border: 1px dashed;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.full-width textarea,
+.full-width input:not([type="submit"], [type="checkbox"], [type="radio"]) {
+    width: calc(100% - 15px);
+}
+
+textarea:required,
+input:required:not([type="submit"]){
+    border: 1px solid;
+}
+
+textarea.full-screen {
+    position: fixed;
+    background-color: white;
+    top: -2px;
+    bottom: -2px;
+    left: 0;
+    width: calc(100vw - 30px);
+    max-width: 720px;
+    border: 10px solid;
+    border-width: 10px calc(50vw - 370px);
+}
+
+@media only screen and (max-width: 750px) {
+    textarea.full-screen {
+        border-width: 10px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+
+    .helptext {
+        color: #aaa;
+    }
+}
+      
+      
+  

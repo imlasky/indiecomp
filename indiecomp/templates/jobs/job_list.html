@@ -1,0 +1,14 @@
+
+{% for job in job_list %}
+<p>
+    <details>
+    <summary>
+        {{job.title}} |  
+        {% for loc in job.location.all %}{{loc.city}} {% endfor %} | 
+        {{job.salaryMin}} - {{job.salaryMax}} |
+        <a href={{job.application_url}}>Apply</a>
+    </summary>
+    <p>{{job.description}}</p>
+</details>
+</p>
+{% endfor %}
