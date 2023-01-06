@@ -1,6 +1,6 @@
 
-      
-      
+
+
 :root {
   --width: 720px;
   --font-main: Tahoma, sans-serif;
@@ -57,7 +57,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 nav a {
@@ -205,6 +205,3 @@ textarea.full-screen {
         color: #aaa;
     }
 }
-      
-      
-  

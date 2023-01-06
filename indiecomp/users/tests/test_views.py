@@ -11,11 +11,7 @@ from django.urls import reverse
 from indiecomp.users.forms import UserAdminChangeForm
 from indiecomp.users.models import User
 from indiecomp.users.tests.factories import UserFactory
-from indiecomp.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from indiecomp.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 

@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from indiecomp.jobs.models import Job
 
+
 class User(AbstractUser):
     """
     Default custom user model for indiecomp.

@@ -1,5 +1,7 @@
-from django.db import models
 from uuid import uuid4
+
+from django.db import models
+
 
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -16,7 +18,8 @@ class Job(models.Model):
     location = models.ManyToManyField("Location")
 
     def __str__(self):
-        return(self.title)
+        return self.title
+
 
 class Location(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -24,14 +27,15 @@ class Location(models.Model):
     country = models.CharField(max_length=100)
 
     def __str__(self):
-        return(f"{self.city}, {self.country}")
+        return f"{self.city}, {self.country}"
+
 
 class Company(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return(self.name);
+        return self.name
 
     class Meta:
         verbose_name = "Company"
