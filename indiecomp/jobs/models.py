@@ -1,11 +1,9 @@
-from uuid import uuid4
 import math
 from datetime import datetime
+from uuid import uuid4
 
 from django.db import models
-from django.db.models import Avg
-from django.db.models import F
-    
+
 
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -33,8 +31,7 @@ class Job(models.Model):
 
     def save(self, *args, **kwargs):
         self.set_hotness_score()
-        super(Job, self).save(*args, **kwargs)
-
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
