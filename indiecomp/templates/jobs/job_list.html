@@ -8,10 +8,10 @@
         {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
         ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
         {{job.num_apply}} applied |
-        <span><form method="POST" action="{% url 'jobs:apply' job.id %}" >
+        <form method="POST" action="{% url 'jobs:apply' job.id %}" >
             {% csrf_token %}
             <button type="submit">Apply</button>
-        </form> </span>
+        </form>
 
 
     </summary>
