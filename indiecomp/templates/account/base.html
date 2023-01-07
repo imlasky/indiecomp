@@ -3,9 +3,17 @@
 
 
 {% block content %}
-<div class="row">
-  <div class="col-md-6 offset-md-3">
+<nav>
+  {% if user.is_authenticated %}
+      {% comment %} <a href="#">Post a Job</a> {% endcomment %}
+      <a href="/users/{{user.username}}">Dashboard</a>
+      <a href="/accounts/logout/">Sign Out</a>
+  {% else %}
+      <a href="/accounts/signup/">Sign up</a>
+      <a href="/accounts/login/">Log in</a>
+      {% comment %} <a href="#">Post a Job</a> {% endcomment %}
+  {% endif %}
+
+</nav>
     {% block inner %}{% endblock %}
-  </div>
-</div>
 {% endblock %}

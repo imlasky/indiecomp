@@ -14,7 +14,7 @@ urlpatterns = [
     path("users/", include("indiecomp.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path(r"^favicon\.ico$", RedirectView.as_view(url="/static/images/favicon.svg")),
+    path("favicon.ico", RedirectView.as_view(url="/static/images/favicons/favicon.svg")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,7 +1,8 @@
 from uuid import uuid4
 
 from django.db import models
-
+from datetime import datetime
+import math
 
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -16,6 +17,17 @@ class Job(models.Model):
 
     company = models.ForeignKey("Company", on_delete=models.CASCADE)
     location = models.ManyToManyField("Location")
+
+    num_apply = models.PositiveIntegerField(default=0)
+    hotness = models.FloatField(default=0)
+
+    # def get_hotness_score(self):
+    #     order = math.log(max(self.num_apply, 1), 10)
+    #     seconds = datetime.timestamp - 1673063024
+    #     return round(order + seconds / 45000, 7)
+
+    # def save(self):
+    #     self.hotness = self.get_hotness_score()
 
     def __str__(self):
         return self.title

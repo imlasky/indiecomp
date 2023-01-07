@@ -3,11 +3,17 @@
 <p>
     <details>
     <summary>
-        {{job.title}} |
+        <strong>{{job.title}}</strong> |
         {{job.company.name}} |
         {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
-        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
-        <a href={{job.application_url}}>Apply</a>
+        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} | 
+        {{job.num_apply}} applied | 
+        <span><form method="POST" action="{% url 'jobs:apply' job.id %}" >
+            {% csrf_token %}
+            <button type="submit">Apply</button>
+        </form> </span>
+        
+        
     </summary>
     <p>{{job.description}}</p>
 </details>

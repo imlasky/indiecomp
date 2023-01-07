@@ -1,4 +1,6 @@
 from django.views.generic.list import ListView
+from django.shortcuts import HttpResponse, get_object_or_404
+from django.shortcuts import redirect
 
 from indiecomp.jobs.models import Job
 
@@ -8,3 +10,12 @@ class JobListView(ListView):
     paginate_by = 100
     context_object_name = "job_list"
     template_name = "pages/home.html"
+
+def apply(request, pk):
+    if request.method == "POST":
+        job = get_object_or_404(Job, pk=pk)
+        job.num_apply += 1
+        job.save()
+        return redirect(job.application_url)
+    return redirect('/')
+    
