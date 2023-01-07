@@ -1,8 +1,7 @@
 from uuid import uuid4
 
 from django.db import models
-from datetime import datetime
-import math
+
 
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
