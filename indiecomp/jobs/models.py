@@ -1,5 +1,4 @@
 import math
-from datetime import datetime
 from uuid import uuid4
 
 from django.db import models
@@ -29,7 +28,8 @@ class Job(models.Model):
         return round(order + seconds / (hours * 3600), 15)
 
     def save(self, *args, **kwargs):
-        self.hotness = self.get_hotness_score()
+        if self.created_at:
+            self.hotness = self.get_hotness_score()
         super().save(*args, **kwargs)
 
     def __str__(self):
