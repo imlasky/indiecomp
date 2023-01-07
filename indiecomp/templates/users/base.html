@@ -5,7 +5,7 @@
 {% block content %}
 <nav>
   {% if user.is_authenticated %}
-      <a href="#">Post a Job</a>
+      {% comment %} <a href="#">Post a Job</a> {% endcomment %}
       <a href="/users/{{user.username}}">Dashboard</a>
       <a href="/accounts/logout/">Sign Out</a>
   {% endif %}

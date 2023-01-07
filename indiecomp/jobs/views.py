@@ -10,6 +10,9 @@ User = get_user_model()
 class JobListView(ListView):
     model = Job
     paginate_by = 100
+    queryset = Job.objects.all()
+    [o.save() for o in queryset]
+    ordering = ['-hotness']
     context_object_name = "job_list"
     template_name = "pages/home.html"
 

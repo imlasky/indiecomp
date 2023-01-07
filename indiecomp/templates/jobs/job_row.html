@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load markdown_extras %}
 <p>
     <details>
     <summary>
@@ -18,6 +19,9 @@
             </form>
         {% endif %}
     </summary>
-    <p>{{job.description}}</p>
+    <h3>Company description</h3>
+    <p>{{job.company.description | markdown | safe}}</p>
+    <h3>Job description</h3>
+    <p>{{job.description | markdown | safe}}</p>
 </details>
 </p>
