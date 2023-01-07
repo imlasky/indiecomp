@@ -22,15 +22,14 @@ class Job(models.Model):
     num_apply = models.PositiveIntegerField(default=0)
     hotness = models.FloatField(default=0)
 
-    def set_hotness_score(self):
+    def get_hotness_score(self):
         order = math.log10(max(self.num_apply, 1))
-        seconds = datetime.now().timestamp() - 1673063024
-        hours = 12
-        self.hotness = round(order + seconds / (hours * 3600), 15)
-        # return hotness
+        seconds = self.created_at.timestamp() - 1673063024
+        hours = 12.5
+        return round(order + seconds / (hours * 3600), 15)
 
     def save(self, *args, **kwargs):
-        self.set_hotness_score()
+        self.hotness = self.get_hotness_score()
         super().save(*args, **kwargs)
 
     def __str__(self):

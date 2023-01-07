@@ -18,6 +18,9 @@
                 <button type="submit">Remove</button>
             </form>
         {% endif %}
+        {% if user.is_superuser %}
+        {{job.hotness}}
+        {% endif %}
     </summary>
     <h3>Company description</h3>
     <p>{{job.company.description | markdown | safe}}</p>
