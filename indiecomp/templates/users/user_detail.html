@@ -1,8 +1,5 @@
 {% extends "users/base.html" %}
 {% load static %}
-{% load humanize %}
-
-
 
 {% block inner %}
 
@@ -16,27 +13,13 @@
 {% endif %}
 <br>
 <h2>Jobs you applied for</h2>
-{% for job in user.saved_jobs.all %}
-<p>
-    <details>
-    <summary>
-        <strong>{{job.title}}</strong> |
-        {{job.company.name}} |
-        {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
-        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
-        {{job.num_apply}} applied |
-        <form method="POST" action="{% url 'jobs:apply' job.id %}" >
-            {% csrf_token %}
-            <button type="submit">Apply</button>
-        </form>
-        <form method="POST" action="{% url 'jobs:remove_job_from_user' job.id %}" >
-            {% csrf_token %}
-            <button type="submit">Remove</button>
-        </form>
-    </summary>
-    <p>{{job.description}}</p>
-</details>
-</p>
-{% endfor %}
+{% if user.saved_jobs.all %}
+    {% for job in user.saved_jobs.all %}
+        {% include "jobs/job_row.html" with job=job loc="dashboard" %}
+    {% endfor %}
+{% else %}
+    <p>You haven't applied to any jobs yet!</p>
+{% endif %}
+
 
 {% endblock inner %}

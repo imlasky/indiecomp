@@ -1,10 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.list import ListView
-from django.contrib.auth import get_user_model
 
 from indiecomp.jobs.models import Job
 
 User = get_user_model()
+
 
 class JobListView(ListView):
     model = Job
@@ -24,6 +25,7 @@ def apply(request, pk):
             user.save()
         return redirect(job.application_url)
     return redirect("/")
+
 
 def remove_job_from_user(request, pk):
     if request.method == "POST":

@@ -1,21 +1,4 @@
 {% load humanize %}
 {% for job in job_list %}
-<p>
-    <details>
-    <summary>
-        <strong>{{job.title}}</strong> |
-        {{job.company.name}} |
-        {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
-        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
-        {{job.num_apply}} applied |
-        <form method="POST" action="{% url 'jobs:apply' job.id %}" >
-            {% csrf_token %}
-            <button type="submit">Apply</button>
-        </form>
-
-
-    </summary>
-    <p>{{job.description}}</p>
-</details>
-</p>
+    {% include "jobs/job_row.html" with job=job %}
 {% endfor %}

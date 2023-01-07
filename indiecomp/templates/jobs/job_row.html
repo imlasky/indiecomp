@@ -1,0 +1,23 @@
+{% load humanize %}
+<p>
+    <details>
+    <summary>
+        <strong>{{job.title}}</strong> |
+        {{job.company.name}} |
+        {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
+        ${{job.salaryMin|intcomma}} - ${{job.salaryMax|intcomma}} |
+        {{job.num_apply}} applied |
+        <form method="POST" action="{% url 'jobs:apply' job.id %}" >
+            {% csrf_token %}
+            <button type="submit">Apply</button>
+        </form>
+        {% if loc == "dashboard" %}
+            <form method="POST" action="{% url 'jobs:remove_job_from_user' job.id %}" >
+                {% csrf_token %}
+                <button type="submit">Remove</button>
+            </form>
+        {% endif %}
+    </summary>
+    <p>{{job.description}}</p>
+</details>
+</p>
