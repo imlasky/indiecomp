@@ -1,4 +1,4 @@
-# Indie Comp Jobs
+# 🚀 Indie Comp Jobs
 
 Jobs from companies that have taken no outside investment and like it that way
 
