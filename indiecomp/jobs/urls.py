@@ -16,5 +16,5 @@ urlpatterns = [
         view=post_review_job_posting,
         name="post_review_job_posting",
     ),
-    path("jobs/review/", view=JobReviewList.as_view(), name="jobs_review"),
+    path("jobs/review/", view=JobReviewList.as_view(), name="review"),
 ]
