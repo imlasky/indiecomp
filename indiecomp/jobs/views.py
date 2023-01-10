@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 
 from indiecomp.jobs.models import Job
 
@@ -12,7 +13,7 @@ class JobListView(ListView):
     model = Job
     # paginate_by = 100
     queryset = Job.objects.all().filter(approved=Job.APPROVED)
-    # [o.save() for o in queryset.all()]
+    [job.set_hotness_score() for job in queryset.all()]
     ordering = ["-hotness"]
     context_object_name = "job_list"
     template_name = "pages/home.html"
@@ -61,3 +62,8 @@ class JobReviewList(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Job
     queryset = Job.objects.all().filter(approved=Job.PENDING)
     template_name = "jobs/job_review.html"
+
+class JobCreateView(LoginRequiredMixin, CreateView):
+    model = Job
+    fields = ["title", "salaryMin", "salaryMax", "description", "application_url", "location", "company"]
+    template_name = "jobs/job_create.html"

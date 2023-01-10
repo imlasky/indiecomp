@@ -7,7 +7,6 @@ from django.db import models
 #     def get_queryset(self):
 #         return super().get_queryset()
 
-
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,16 +34,17 @@ class Job(models.Model):
     num_apply = models.PositiveIntegerField(default=0)
     hotness = models.FloatField(default=0)
 
-    def get_hotness_score(self):
+    def set_hotness_score(self):
         order = math.log10(max(self.num_apply, 1))
         seconds = self.created_at.timestamp() - 1673063024
         hours = 12.5
-        return round(order + seconds / (hours * 3600), 15)
+        self.hotness = round(order + seconds / (hours * 3600), 15)
+        self.save()
 
-    def save(self, *args, **kwargs):
-        if self.created_at:
-            self.hotness = self.get_hotness_score()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.created_at:
+    #         self.hotness = self.get_hotness_score()
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

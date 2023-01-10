@@ -4,18 +4,18 @@
 <body class="">
     <h2 style="font-size: 1.34em">Find jobs at companies that have taken no outside investment and like it that way</h2>
     <h3>Regularly updated and hand-picked.</h3>
-    <nav>
+    <nav>            
+        <a href="{% url 'jobs:create' %}">Post a Job</a>
         {% if user.is_authenticated %}
-            {% comment %} <a href="#">Post a Job</a> {% endcomment %}
             <a href="/users/{{user.username}}">Dashboard</a>
             <a href="/accounts/logout/">Sign Out</a>
         {% else %}
             <a href="/accounts/signup/">Sign up</a>
             <a href="/accounts/login/">Log in</a>
-            {% comment %} <a href="#">Post a Job</a> {% endcomment %}
         {% endif %}
     </nav>
 </body>
-
-{% include "jobs/job_list.html" %}
+    {% block inner %}
+        {% include "jobs/job_list.html" %}
+    {% endblock inner %}
 {% endblock content %}
