@@ -3,11 +3,24 @@ from uuid import uuid4
 
 from django.db import models
 
+# class JobManager(models.Manager):
+#     def get_queryset(self):
+#         return super().get_queryset()
 
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    APPROVED = "A"
+    PENDING = "P"
+    REJECTED = "R"
+    APPROVAL_CHOICES = [
+        (APPROVED, "Approved"),
+        (PENDING, "Pending"),
+        (REJECTED, "Rejected"),
+    ]
+    approved = models.CharField(max_length=1, choices=APPROVAL_CHOICES, default=PENDING)
 
     title = models.CharField(blank=False, null=False, max_length=250)
     salaryMin = models.PositiveIntegerField(blank=True)

@@ -1,0 +1,9 @@
+{% extends 'pages/home.html' %}
+
+{% block content %}
+    {% for job in job_list %}
+        {% include "jobs/job_row.html" with job=job loc="review" %}
+    {% endfor %}
+{% endblock content %}
+
+

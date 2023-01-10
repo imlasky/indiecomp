@@ -1,6 +1,6 @@
 from django.urls import path
 
-from indiecomp.jobs.views import JobListView, apply, remove_job_from_user
+from indiecomp.jobs.views import JobListView, apply, remove_job_from_user, post_review_job_posting, JobReviewList
 
 app_name = "jobs"
 urlpatterns = [
@@ -11,4 +11,10 @@ urlpatterns = [
         view=remove_job_from_user,
         name="remove_job_from_user",
     ),
+    path(
+        "jobs/<uuid:pk>/review/",
+        view=post_review_job_posting,
+        name="post_review_job_posting",
+    ),
+    path("jobs/review/", view=JobReviewList.as_view(), name="jobs_review"),
 ]

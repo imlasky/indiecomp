@@ -1,19 +1,5 @@
-{% extends "base.html" %}
+{% extends "users/base.html" %}
 {% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
 
 
-{% block content %}
-<nav>
-  {% if user.is_authenticated %}
-      {% comment %} <a href="#">Post a Job</a> {% endcomment %}
-      <a href="/users/{{user.username}}">Dashboard</a>
-      <a href="/accounts/logout/">Sign Out</a>
-  {% else %}
-      <a href="/accounts/signup/">Sign up</a>
-      <a href="/accounts/login/">Log in</a>
-      {% comment %} <a href="#">Post a Job</a> {% endcomment %}
-  {% endif %}
-
-</nav>
-    {% block inner %}{% endblock %}
-{% endblock %}
+{% block inner %}{% endblock inner %}
