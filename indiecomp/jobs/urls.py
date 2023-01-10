@@ -1,6 +1,12 @@
 from django.urls import path
 
-from indiecomp.jobs.views import JobListView, apply, remove_job_from_user, post_review_job_posting, JobReviewList
+from indiecomp.jobs.views import (
+    JobListView,
+    JobReviewList,
+    apply,
+    post_review_job_posting,
+    remove_job_from_user,
+)
 
 app_name = "jobs"
 urlpatterns = [

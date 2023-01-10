@@ -8,7 +8,7 @@
       {% comment %} <a href="#">Post a Job</a> {% endcomment %}
       <a href="/users/{{user.username}}">Dashboard</a>
       <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-      <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>  
+      <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
       <a href="/accounts/logout/">Sign Out</a>
       {% if user.is_superuser %}
         <a href="{% url 'jobs:review' %}">Review</a>
