@@ -3,15 +3,6 @@
 
 {% block inner %}
 
-{% comment %} {% if object == request.user %}
-<!-- Action buttons -->
-
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-
-<!-- End Action buttons -->
-{% endif %} {% endcomment %}
-{% comment %} <br> {% endcomment %}
 <h2>Jobs you applied for</h2>
 {% if user.saved_jobs.all %}
     {% for job in user.saved_jobs.all %}

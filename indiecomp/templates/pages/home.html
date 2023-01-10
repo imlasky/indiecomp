@@ -5,7 +5,7 @@
     <h2 style="font-size: 1.34em">Find jobs at companies that have taken no outside investment and like it that way</h2>
     <h3>Regularly updated and hand-picked.</h3>
     <nav>
-        <a href="{% url 'jobs:create' %}">Post a Job</a>
+        {% comment %} <a href="{% url 'jobs:create' %}">Post a Job</a> {% endcomment %}
         {% if user.is_authenticated %}
             <a href="/users/{{user.username}}">Dashboard</a>
             <a href="/accounts/logout/">Sign Out</a>
