@@ -7,6 +7,7 @@ from django.db import models
 #     def get_queryset(self):
 #         return super().get_queryset()
 
+
 class Job(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)

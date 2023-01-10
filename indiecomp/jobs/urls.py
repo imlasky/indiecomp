@@ -25,5 +25,4 @@ urlpatterns = [
         view=remove_job_from_user,
         name="remove_job_from_user",
     ),
-    
 ]
