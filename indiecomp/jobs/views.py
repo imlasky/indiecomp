@@ -12,7 +12,7 @@ User = get_user_model()
 class JobListView(ListView):
     model = Job
     queryset = Job.objects.all().filter(approved=Job.APPROVED)
-    # [job.save() for job in queryset.all()]
+    [job.save() for job in queryset.all()]
     ordering = ["-hotness"]
     context_object_name = "job_list"
     template_name = "pages/home.html"
