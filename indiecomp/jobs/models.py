@@ -1,5 +1,6 @@
 import math
 from uuid import uuid4
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from django.db import models
 
@@ -24,10 +25,11 @@ class Job(models.Model):
     approved = models.CharField(max_length=1, choices=APPROVAL_CHOICES, default=PENDING)
 
     title = models.CharField(blank=False, null=False, max_length=250)
-    salary_min = models.PositiveIntegerField(blank=True)
-    salary_max = models.PositiveIntegerField(blank=True)
+    salary_min = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0.0)])
+    salary_max = models.FloatField(blank=True, null=True)
     description = models.TextField(blank=False)
     application_url = models.URLField(blank=False)
+    from_automation = models.BooleanField(default=False)
 
     company = models.ForeignKey("Company", on_delete=models.CASCADE)
     location = models.ManyToManyField("Location")
@@ -54,7 +56,7 @@ class Job(models.Model):
 class Location(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     city = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f"{self.city}, {self.country}"

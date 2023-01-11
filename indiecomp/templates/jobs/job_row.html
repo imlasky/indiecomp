@@ -7,8 +7,27 @@
     <summary>
         <strong>{{job.title}}</strong> |
         {{job.company.name}} |
-        {% for loc in job.location.all %}{% if not forloop.last %}{{loc.city}}, {% else %}{{loc.city}}{% endif %} {% endfor %} |
-        ${{job.salary_min|intcomma}} - ${{job.salary_max|intcomma}} |
+        {% for loc in job.location.all %}
+            {% if not forloop.last %}
+                {{loc.city}}, 
+            {% else %}
+                {{loc.city}}
+            {% endif %} 
+        {% endfor %} |
+        
+        {% if job.salary_min or job.salary_max %}
+            
+        {% endif %}
+        {% if job.salary_min %}
+            ${{job.salary_min|intcomma}}
+        {% endif %}
+        {% if job.salary_max %}
+            - ${{job.salary_max|intcomma}}
+        {% endif %}
+        {% if job.salary_min or job.salary_max %}
+        |
+        {% endif %}
+        
         {{job.num_apply}} applied |
         <form method="POST" action="{% url 'jobs:apply' job.id %}" >
             {% csrf_token %}
@@ -30,9 +49,10 @@
             {{job.hotness}}
         {% endif %}
     </summary>
-    <h3>Company description</h3>
-    <p>{{job.company.description | markdown | safe}}</p>
+    {% comment %} <h3>Company description</h3>
+    <p>{{job.company.description | markdown | safe}}</p> {% endcomment %}
     <h3>Job description</h3>
     <p>{{job.description | markdown | safe}}</p>
+    <a href={{job.application_url}}>Job information</a>
 </details>
 </p>

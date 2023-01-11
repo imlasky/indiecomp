@@ -14,18 +14,26 @@ class Command(BaseCommand):
         
 
         # print(news_feed.entries[0]["link"].split("&from=rss")[0])
-        # print(news_feed.entries[0]['summary'])
-        # for entry in news_feed.entries:
+        # print(news_feed.entries[0]['summary'].split("<br")[0])
+        for entry in news_feed.entries:
             
-        #     res = parse_entry(entry)
-        #     print(res)
-        #     company, created = Company.objects.get_or_create(name=res["company"])
-        #     if created:
-        #         company.save()
-            # job, created = Job.objects.get_or_create(
-            #     title=res["title"],
-            #     salaryMin=res["salaryMin"],
-            #     salaryMax=res["salaryMax"],
-            #     company=company,
-            # )
+            res = parse_entry(entry)
+            company, created = Company.objects.get_or_create(name=res["company"])
+            if created:
+                company.save()
+            location, created = Location.objects.get_or_create(city=res["city"])
+            if created:
+                location.save()
+            job, created = Job.objects.get_or_create(
+                title=res["title"],
+                salary_min=res["salary_min"],
+                salary_max=res["salary_max"],
+                company=company,
+                application_url=res["application_url"],
+                description=res["description"]
+            )
+
+            if created:
+                job.location.add(location)
+                job.save()
             
