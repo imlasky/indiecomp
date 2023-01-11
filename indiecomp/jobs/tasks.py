@@ -26,17 +26,22 @@ def update_rss():
             if created:
                 location.save()
 
-            job, created = Job.objects.get_or_create(
+            job = Job.objects.get(
                 title=res["title"],
-                salary_min=res["salary_min"],
-                salary_max=res["salary_max"],
                 company=company,
+                location=location,
                 application_url=res["application_url"],
-                description=res["description"],
-                from_automation=True,
-                approved=company.approved,
             )
-
-            if created:
-                job.location.add(location)
+            if not job:
+                new_job = Job.objects.create(
+                    title=res["title"],
+                    salary_min=res["salary_min"],
+                    salary_max=res["salary_max"],
+                    company=company,
+                    application_url=res["application_url"],
+                    description=res["description"],
+                    from_automation=True,
+                    approved=company.approved,
+                )
+                new_job.location.add(location)
                 job.save()
