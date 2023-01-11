@@ -137,8 +137,5 @@ LOGGING = {
     },
 }
 
-CELERY_BROKER_URL = env("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-
 # Your stuff...
 # ------------------------------------------------------------------------------
