@@ -10,6 +10,7 @@ feedparser==6.0.10 # https://github.com/kurtmckee/feedparser
 celery==5.2.7  # pyup: < 6.0  # https://github.com/celery/celery
 django-celery-beat==2.4.0  # https://github.com/celery/django-celery-beat
 beautifulsoup4==4.11.1
+flower==1.2.0
 
 # Django
 # ------------------------------------------------------------------------------

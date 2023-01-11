@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 
 from indiecomp.jobs.models import Company, Job, Location
 
-from ._indeed_parser import parse_entry
+from ...helpers._indeed_parser import parse_entry
 
 
 class Command(BaseCommand):
