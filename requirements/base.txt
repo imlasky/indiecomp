@@ -9,7 +9,7 @@ markdown==3.4.1 # https://github.com/Python-Markdown/markdown
 feedparser==6.0.10 # https://github.com/kurtmckee/feedparser
 celery==5.2.7  # pyup: < 6.0  # https://github.com/celery/celery
 django-celery-beat==2.4.0  # https://github.com/celery/django-celery-beat
-beautifulsoup4==4.11.1  
+beautifulsoup4==4.11.1
 
 # Django
 # ------------------------------------------------------------------------------

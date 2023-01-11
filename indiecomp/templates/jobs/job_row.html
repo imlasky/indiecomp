@@ -9,12 +9,12 @@
         {{job.company.name}} |
         {% for loc in job.location.all %}
             {% if not forloop.last %}
-                {{loc.city}}, 
+                {{loc.city}},
             {% else %}
                 {{loc.city}}
-            {% endif %} 
+            {% endif %}
         {% endfor %} |
-        
+
         {% if job.salary_min %}
             ${{job.salary_min|intcomma}}
         {% endif %}

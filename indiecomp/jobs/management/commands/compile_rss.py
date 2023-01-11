@@ -1,19 +1,18 @@
 import feedparser
+from django.core.management.base import BaseCommand
+
+from indiecomp.jobs.models import Company, Job, Location
+
 from ._indeed_parser import parse_entry
-from django.core.management.base import BaseCommand, CommandError
-from indiecomp.jobs.models import Job, Company, Location
-import requests
-from bs4 import BeautifulSoup
 
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
-        
+
         news_feed = feedparser.parse("https://rss.indeed.com/rss?q=tech&sort=date")
 
         for entry in news_feed.entries:
-            
+
             res = parse_entry(entry)
             company, created = Company.objects.get_or_create(name=res["company"])
             if created:
@@ -37,4 +36,3 @@ class Command(BaseCommand):
             if created:
                 job.location.add(location)
                 job.save()
-            

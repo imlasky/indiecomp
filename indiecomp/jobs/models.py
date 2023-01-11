@@ -1,7 +1,7 @@
 import math
 from uuid import uuid4
-from django.core.validators import MaxValueValidator, MinValueValidator
 
+from django.core.validators import MinValueValidator
 from django.db import models
 
 # class JobManager(models.Manager):
@@ -25,7 +25,9 @@ class Job(models.Model):
     approved = models.CharField(max_length=1, choices=APPROVAL_CHOICES, default=PENDING)
 
     title = models.CharField(blank=False, null=False, max_length=250)
-    salary_min = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0.0)])
+    salary_min = models.FloatField(
+        blank=True, null=True, validators=[MinValueValidator(0.0)]
+    )
     salary_max = models.FloatField(blank=True, null=True)
     description = models.TextField(blank=False)
     application_url = models.URLField(blank=False)
@@ -65,7 +67,7 @@ class Company(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    
+
     APPROVED = "A"
     PENDING = "P"
     REJECTED = "R"
