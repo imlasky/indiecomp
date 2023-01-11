@@ -15,9 +15,6 @@
             {% endif %} 
         {% endfor %} |
         
-        {% if job.salary_min or job.salary_max %}
-            
-        {% endif %}
         {% if job.salary_min %}
             ${{job.salary_min|intcomma}}
         {% endif %}
@@ -27,9 +24,9 @@
         {% if job.salary_min or job.salary_max %}
         |
         {% endif %}
-        
-        {{job.num_apply}} applied |
-        <form method="POST" action="{% url 'jobs:apply' job.id %}" >
+        {{job.created_at|naturaltime}} |
+        {{job.num_apply}} applied
+        <form method="POST" action="{% url 'jobs:apply' job.id %}" target="_blank">
             {% csrf_token %}
             <button type="submit">Apply</button>
         </form>
@@ -53,6 +50,6 @@
     <p>{{job.company.description | markdown | safe}}</p> {% endcomment %}
     <h3>Job description</h3>
     <p>{{job.description | markdown | safe}}</p>
-    <a href={{job.application_url}}>Job information</a>
+    <a href={{job.application_url}}>More information</a>
 </details>
 </p>

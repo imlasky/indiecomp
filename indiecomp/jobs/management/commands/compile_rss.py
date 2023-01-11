@@ -10,11 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        news_feed = feedparser.parse("https://rss.indeed.com/rss?q=backend+engineer&sort=date")
-        
+        news_feed = feedparser.parse("https://rss.indeed.com/rss?q=tech&sort=date")
 
-        # print(news_feed.entries[0]["link"].split("&from=rss")[0])
-        # print(news_feed.entries[0]['summary'].split("<br")[0])
         for entry in news_feed.entries:
             
             res = parse_entry(entry)
@@ -22,15 +19,19 @@ class Command(BaseCommand):
             if created:
                 company.save()
             location, created = Location.objects.get_or_create(city=res["city"])
+
             if created:
                 location.save()
+
             job, created = Job.objects.get_or_create(
                 title=res["title"],
                 salary_min=res["salary_min"],
                 salary_max=res["salary_max"],
                 company=company,
                 application_url=res["application_url"],
-                description=res["description"]
+                description=res["description"],
+                from_automation=True,
+                approved=company.approved,
             )
 
             if created:

@@ -1,6 +1,6 @@
-{% extends 'pages/home.html' %}
+{% extends 'users/base.html' %}
 
-{% block content %}
+{% block inner %}
     {% for company in company_list %}
         {{company.name}}
         <form method="POST" action="{% url 'jobs:post_review_company' company.id %}" >
@@ -9,4 +9,4 @@
             <button type="submit" name="decision" value="R">Reject</button>
         </form>
     {% endfor %}
-{% endblock content %}
+{% endblock inner %}

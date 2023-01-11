@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
 from indiecomp.jobs.models import Job, Company
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -12,7 +13,7 @@ User = get_user_model()
 class JobListView(ListView):
     model = Job
     queryset = Job.objects.all().filter(approved=Job.APPROVED)
-    [job.set_hotness_score() for job in queryset.all()]
+    [job.save() for job in queryset.all()]
     ordering = ["-hotness"]
     context_object_name = "job_list"
     template_name = "pages/home.html"
@@ -57,8 +58,14 @@ def post_review_company(request, pk):
     if request.method == "POST":
         company = get_object_or_404(Company, pk=pk)
         if request.user.is_superuser:
+            jobs = Job.objects.filter(company=company, from_automation=True)
+
             company.approved = request.POST["decision"]
             company.save()
+
+            for job in jobs:
+                job.approved = request.POST["decision"]
+                job.save()
         else:
             return redirect("/")
         return redirect("/companies/review/")

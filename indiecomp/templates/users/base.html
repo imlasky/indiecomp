@@ -11,7 +11,8 @@
       <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
       <a href="/accounts/logout/">Sign Out</a>
       {% if user.is_superuser %}
-        <a href="{% url 'jobs:review' %}">Review</a>
+        <a href="{% url 'jobs:review' %}">Review Jobs</a>
+        <a href="{% url 'jobs:company_review' %}">Review Companies</a>
       {% endif %}
   {% endif %}
 </nav>
