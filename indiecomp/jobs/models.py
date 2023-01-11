@@ -63,7 +63,17 @@ class Location(models.Model):
 class Company(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
+    
+    APPROVED = "A"
+    PENDING = "P"
+    REJECTED = "R"
+    APPROVAL_CHOICES = [
+        (APPROVED, "Approved"),
+        (PENDING, "Pending"),
+        (REJECTED, "Rejected"),
+    ]
+    approved = models.CharField(max_length=1, choices=APPROVAL_CHOICES, default=PENDING)
 
     def __str__(self):
         return self.name

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
-from indiecomp.jobs.models import Job
+from indiecomp.jobs.models import Job, Company
 
 User = get_user_model()
 
@@ -54,6 +54,17 @@ def post_review_job_posting(request, pk):
         return redirect("/jobs/review/")
     return redirect("/")
 
+def post_review_company(request, pk):
+    if request.method == "POST":
+        company = get_object_or_404(Company, pk=pk)
+        if request.user.is_superuser:
+            company.approved = request.POST["decision"]
+            company.save()
+        else:
+            return redirect("/")
+        return redirect("/companies/review/")
+    return redirect("/")
+
 
 class JobReviewList(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def test_func(self):
@@ -62,6 +73,14 @@ class JobReviewList(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Job
     queryset = Job.objects.all().filter(approved=Job.PENDING)
     template_name = "jobs/job_review.html"
+
+class CompanyReviewList(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    model = Company
+    queryset = Company.objects.all().filter(approved=Company.PENDING)
+    template_name = "jobs/company_review.html"
 
 
 class JobCreateView(LoginRequiredMixin, CreateView):

@@ -1,0 +1,12 @@
+{% extends 'pages/home.html' %}
+
+{% block content %}
+    {% for company in company_list %}
+        {{company.name}}
+        <form method="POST" action="{% url 'jobs:post_review_company' company.id %}" >
+            {% csrf_token %}
+            <button type="submit" name="decision" value="A">Approve</button>
+            <button type="submit" name="decision" value="R">Reject</button>
+        </form>
+    {% endfor %}
+{% endblock content %}
