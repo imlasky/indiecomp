@@ -24,8 +24,8 @@ class Job(models.Model):
     approved = models.CharField(max_length=1, choices=APPROVAL_CHOICES, default=PENDING)
 
     title = models.CharField(blank=False, null=False, max_length=250)
-    salaryMin = models.PositiveIntegerField(blank=True)
-    salaryMax = models.PositiveIntegerField(blank=True)
+    salary_min = models.PositiveIntegerField(blank=True)
+    salary_max = models.PositiveIntegerField(blank=True)
     description = models.TextField(blank=False)
     application_url = models.URLField(blank=False)
 

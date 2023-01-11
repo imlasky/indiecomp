@@ -13,7 +13,7 @@ class JobListView(ListView):
     model = Job
     # paginate_by = 100
     queryset = Job.objects.all().filter(approved=Job.APPROVED)
-    [job.set_hotness_score() for job in queryset.all()]
+    # [job.set_hotness_score() for job in queryset.all()]
     ordering = ["-hotness"]
     context_object_name = "job_list"
     template_name = "pages/home.html"

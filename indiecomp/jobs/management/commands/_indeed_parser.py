@@ -13,11 +13,16 @@ def parse_entry(entry):
         salary_min, salary_max = format_salary(salary_min), format_salary(salary_max)
 
 
+    summary = entry["summary"]
+    application_url = entry["link"].split("&from=rss")[0]
+
     title, company, location = entry["title"].rsplit('-', maxsplit=2)
     return {
         "title": title.strip(),
         "company": company.strip(),
         "location": location.strip(),
-        "salaryMin": salary_min,
-        "salaryMax": salary_max,
+        "salary_min": salary_min,
+        "salary_max": salary_max,
+        "summary": summary,
+        "application_url": application_url
     }

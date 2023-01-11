@@ -5,7 +5,7 @@ from .models import Company, Job, Location
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = ["title", "salaryMin", "salaryMax"]
+    list_display = ["title", "salary_min", "salary_max"]
 
 
 @admin.register(Location)
