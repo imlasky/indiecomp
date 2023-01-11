@@ -84,3 +84,11 @@ class Company(models.Model):
     class Meta:
         verbose_name = "Company"
         verbose_name_plural = "Companies"
+
+
+class Feed(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    source_name = models.CharField(max_length=100)
+    search_term = models.CharField(max_length=100)
+    url = models.URLField()
+    active = models.BooleanField(default=False)
