@@ -26,7 +26,8 @@ def update_rss():
             if created:
                 location.save()
 
-            job = Job.objects.get(
+
+            job = Job.objects.filter(
                 title=res["title"],
                 company=company,
                 location=location,
